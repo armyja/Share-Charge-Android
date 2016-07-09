@@ -6,12 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-
     private TextView tv;
-
     /**
      * 广播接受者
      */
@@ -39,8 +39,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         tv = (TextView) findViewById(R.id.battery);
-        //tv.setText("chrp");
-        //this.setContentView(tv);
 
         //注册广播接受者java代码
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -49,5 +47,15 @@ public class MainActivity extends Activity {
 
         //注册receiver
         registerReceiver(batteryReceiver, intentFilter);
+
+        Button btn = (Button) findViewById(R.id.user);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+                //finish();
+            }
+        });
     }
 }

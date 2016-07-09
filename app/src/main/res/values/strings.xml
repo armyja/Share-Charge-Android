@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">sharecharge</string>
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
+    <string name="user">用户</string>
+    <string name="share_charge">Share Charge</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
 </resources>
