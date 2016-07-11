@@ -6,7 +6,9 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by bb_wj on 16-7-9.
  */
-public class utils {
+public class Md5Uils {
+    public Md5Uils() {
+    }
     public static String Md5(String sourceStr) {
         String result = "";
         try {
@@ -24,7 +26,7 @@ public class utils {
                 buf.append(Integer.toHexString(i));
             }
             result = buf.toString();
-            System.out.println("result: " + result);//32位的加密
+//            System.out.println("result: " + result); 32位的加密
 //   System.out.println("result: " + buf.toString().substring(8,24));//16位的加密
         } catch (NoSuchAlgorithmException e) {
             // TODO Auto-generated catch block e.printStackTrace();

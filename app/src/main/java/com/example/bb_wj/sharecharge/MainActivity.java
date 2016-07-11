@@ -6,12 +6,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.example.bb_wj.sharecharge.HttpUtils.getJsonContent;
 
 public class MainActivity extends Activity {
     private TextView tv;
+    private static String url_path = "http://192.168.1.108:5000/logout";
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Toast.makeText(getApplicationContext(), "Logout success", Toast.LENGTH_SHORT).show();
+        }
+    };
     /**
      * 广播接受者
      */
@@ -48,13 +66,47 @@ public class MainActivity extends Activity {
         //注册receiver
         registerReceiver(batteryReceiver, intentFilter);
 
-        Button btn = (Button) findViewById(R.id.user);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btn_user = (Button) findViewById(R.id.user);
+        btn_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Account.class);
+                startActivity(intent);
+                //finish();
+            }
+        });
+
+        Button btn_login = (Button) findViewById(R.id.btnLogin);
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
                 //finish();
+            }
+        });
+
+
+        Button btn_logout = (Button) findViewById(R.id.btnLogout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject result = new JSONObject(getJsonContent(url_path));
+                            if (result.getString("status").equals("success")) {
+                                Message msg = Message.obtain();
+                                msg.what = 1;
+                                msg.obj = result.toString();
+                                handler.sendMessage(msg);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }

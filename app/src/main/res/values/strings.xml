@@ -6,4 +6,10 @@
     <string name="share_charge">Share Charge</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="account">用户</string>
+    <string name="logout">Logout</string>
+    <string name="email">邮箱</string>
+    <string name="repeat_password">重复密码</string>
+    <string name="tel">手机</string>
+    <string name="school_id">学号</string>
 </resources>
