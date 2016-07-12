@@ -22,7 +22,6 @@ import static com.example.bb_wj.sharecharge.HttpUtils.getJsonContent;
 
 public class MainActivity extends Activity {
     private TextView tv;
-    private static String url_path = "http://192.168.1.108:5000/logout";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -56,6 +55,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final String url_path = getString(R.string.host) + "/logout";
         tv = (TextView) findViewById(R.id.battery);
 
         //注册广播接受者java代码

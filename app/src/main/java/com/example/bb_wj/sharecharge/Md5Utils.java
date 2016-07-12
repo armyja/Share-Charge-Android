@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by bb_wj on 16-7-9.
  */
-public class Md5Uils {
-    public Md5Uils() {
+public class Md5Utils {
+    public Md5Utils() {
     }
     public static String Md5(String sourceStr) {
         String result = "";

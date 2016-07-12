@@ -41,7 +41,7 @@ public class Account extends Activity {
         public void run() {
             super.run();
             try {
-                String url_path = "http://192.168.1.108:5000/user";
+                String url_path = getString(R.string.host) + "/user";
                 JSONObject result = new JSONObject(getJsonContent(url_path));
                 // 创建 message
                 if (result.getString("status").equals("success")) {

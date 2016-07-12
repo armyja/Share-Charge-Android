@@ -41,7 +41,7 @@ public class HttpUtils {
             connection.setDoInput(true);
 
             //Get Session ID
-            String key;
+            String key = "";
 
             for (int i = 1; (key = connection.getHeaderFieldKey(i)) != null; i++) {
                 if (key.equalsIgnoreCase("set-cookie")) {

@@ -1,7 +1,6 @@
 package com.example.bb_wj.sharecharge;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
@@ -17,19 +16,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Handler;
 
 import static com.example.bb_wj.sharecharge.HttpUtils.sendPostMessage;
-import static com.example.bb_wj.sharecharge.Md5Uils.Md5;
+import static com.example.bb_wj.sharecharge.Md5Utils.Md5;
 
 
 /**
  * Created by bb_wj on 16-7-9.
  */
 public class Login extends Activity {
-    private Context gContest;
     private static URL url;
-    private static String PATH = "http://192.168.1.108:5000/login";
     private EditText user_name;
     private EditText password;
     private Button btn_login;
@@ -39,7 +35,6 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        gContest = this;
         btn_login = (Button) findViewById(R.id.login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +51,8 @@ public class Login extends Activity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Register.class);
-                getApplicationContext().startActivity(intent);
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -79,6 +74,7 @@ public class Login extends Activity {
             super.run();
             try {
                 // get response
+                String PATH = getString(R.string.host) + "/login";
                 url = new URL(PATH);
                 JSONObject result = new JSONObject(sendPostMessage(url, params, "utf-8"));
                 Looper.prepare();

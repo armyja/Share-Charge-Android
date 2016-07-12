@@ -12,4 +12,9 @@
     <string name="repeat_password">重复密码</string>
     <string name="tel">手机</string>
     <string name="school_id">学号</string>
+    <string name="host2">http://192.168.1.108:5000</string>
+    <string name="host">http://www.armyja.cn:5000</string>
+    <string name="sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
 </resources>
